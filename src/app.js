@@ -4,7 +4,6 @@ dotenv.config()
 import express  from "express";
 const app = express()
 import mongoose from "mongoose";
-import chalk from 'chalk';
 import UserRouter from './routers/User.js';
 
 app.use(express.urlencoded({extended:false}))
@@ -19,7 +18,7 @@ async function main(){
 }
 main()
 
-app.use('/user', UserRouter)
+app.use('/', UserRouter)
 
 
 app.get("/", (req, res)=>{

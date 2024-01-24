@@ -3,7 +3,7 @@ import StatusError from "../utils/Error.js";
 class User {
   async Create({ name, email, password }) {
     try {
-      await UserModel.create({
+      return await UserModel.create({
         name,
         email,
         password,
@@ -16,7 +16,16 @@ class User {
     try {
       const user = await UserModel.find(toEqual)
       if(!user || user.length <= 0) return false
-      return user
+      return user[0]
+  }catch(err){
+    throw err
+  }
+}
+  async Remove(_id) {
+    try {
+      const Changes = await UserModel.findByIdAndDelete(_id)
+      if(!Changes || Changes.length <= 0) return false
+      return true
   }catch(err){
     throw err
   }
