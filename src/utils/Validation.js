@@ -1,4 +1,5 @@
-import ERROR_CUSTOM from "./Error.js"
+import Error from "./Error.js"
+const {NotValid} = Error
 const names = {
   name: "Nome",
   email: "Email",
@@ -17,7 +18,7 @@ class Validation {
   EmailFormat() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
     if (!emailRegex.test(this.data.email))
-      throw new ERROR_CUSTOM(`Formato de email inválido`).NotValid
+      throw new NotValid(`Formato de email inválido`)
   }
   Check() {
     var msg;
@@ -33,7 +34,7 @@ class Validation {
         msg = names[input]
           ? `Não foi passado o ${names[input]}`
           : `Passe todos os parametros !`;
-        throw new ERROR_CUSTOM(msg).NotValid
+        throw new NotValid(msg)
       } else if (this.inputs[input] != undefined && option == null)
         this.inputs[input]();
     });

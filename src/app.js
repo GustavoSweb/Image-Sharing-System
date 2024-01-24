@@ -8,13 +8,12 @@ import chalk from 'chalk';
 import UserRouter from './routers/User.js';
 
 app.use(express.urlencoded({extended:false}))
-app.use(express.json())
+app.use(express.json()) 
+
 async function main(){
     try{
         await mongoose.connect(process.env.MONGODB_URL)
-        console.log(chalk.green('Banco de dados Conectado'))
     }catch(err){
-        console.log(err)
         throw new Error('Não foi possivel conectar o banco de dados')
     }
 }

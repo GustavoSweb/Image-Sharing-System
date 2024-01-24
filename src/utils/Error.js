@@ -1,21 +1,25 @@
 import statusCode from "./httpStatusCode.js";
 const { BAD_REQUEST, CONFLICT, NOT_FOUND } = statusCode;
-class StatusError extends Error {
+class NotValid extends Error {
   constructor(message) {
     super(message);
-  }
-  get NotValid() {
     this.name = "NotValid";
     this.status = BAD_REQUEST;
   }
-  get NotExistValue() {
-    this.status = NOT_FOUND;
-    this.name = "NotExistValue";
-  }
-  get ConflictData() {
+}
+class ConflitData extends Error {
+  constructor(message) {
+    super(message);
     this.status = CONFLICT;
     this.name = "ConflictData";
   }
 }
+  class NotExistValue extends Error {
+  constructor(message) {
+    super(message);
+    this.status = NOT_FOUND;
+    this.name = "NotExistValue";
+  }
+}
 
-export default StatusError;
+export default {NotValid, ConflitData, NotExistValue};
